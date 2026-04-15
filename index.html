@@ -9,52 +9,54 @@
 </head>
 <body>
     
-    <script src="main.js"></script>
 
 
     <div class="container">
 
     <h1 class="title">Calculator</h1>
     
-    <input type="text" class="userInput" id="display" placeholder="0" inputmode="decimal" autofocus="">
+    <input type="text" class="userInput" id="display" placeholder="0" autofocus="" readonly>
 
     <div class="buttons">
 
     <div class="lines">
-    <button>1</button>
-    <button>2</button>
-    <button>3</button>
+
+    <button class="num" value="1">1</button>
+    <button class="num" value="2">2</button>
+    <button class="num" value="3">3</button>
     <button class="operator">+</button>
     </div>
 
     <div class="lines">    
-    <button>4</button>
-    <button>5</button>
-    <button>6</button>
+    <button class="num" value="4">4</button>
+    <button class="num" value="5">5</button>
+    <button class="num" value="6">6</button>
     <button class="operator">-</button>
     </div>
 
     <div class="lines">
-    <button>7</button>
-    <button>8</button>
-    <button>9</button>
+    <button class="num" value="7">7</button>
+    <button class="num" value="8">8</button>
+    <button class="num" value="9">9</button>
     <button class="operator">*</button>
     </div>
 
     <div class="lines">
     <button>+/-</button>
-    <button>0</button>
+    <button class="num" value="0">0</button>
     <button>.</button>
     <button class="operator">/</button>
     </div>
 
     <div class="lines">
-    <button class="specials">⌫</button>
-    <button class="specials">C</button>
+    <button class="specials" id="backspace" value="backspace">⌫</button>
+    <button class="specials" id="clear" value="c">C</button>
     <button class="specials">=</button>
     </div>
     </div>
    </div>
     
+   <script src="main.js"></script>
+   
 </body>
 </html>
