@@ -1,0 +1,102 @@
+body{
+    display: flex;
+   justify-content: center;
+    
+}
+
+.container{
+    background-color: black;
+    display: flex;
+    flex-flow: column wrap;
+    padding: 50px;
+    width: 400px;
+    gap: 15px;
+    border-radius: 15px;
+
+}
+
+.title{
+    display: flex;
+    margin-top: 0;
+    align-items: flex-start;
+    color: aliceblue;
+}
+
+.userInput{
+    display: flex;
+    font-size: 25px; 
+    text-align: end; 
+    border-radius: 5px;
+    background-color: aqua;
+}
+
+
+button{
+    display: felx;
+    background: #111;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    padding: 10px; 
+    color: azure;
+    font-weight: bold;
+    font-size: 1.5em;
+    flex-grow: 1;
+    width: 1em;
+    transition: all 0.4s ease;
+}
+
+button::before{
+    content:'';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        0deg,
+        transparent,
+        transparent 30%,
+        rgba(0,255,255,0.3)
+    );
+    transform: rotate(-45deg);
+    transition: all 0.5s ease;
+    opacity: 0;
+}
+
+button:hover{
+    transform: scale(1.05);
+    box-shadow: 0 0 20px
+    rgba(0,255,255,0.5)
+}
+
+button:hover::before{
+    opacity: 1;
+    transform: rotate(-45deg)
+    translateY(100%);
+}
+
+.buttons{ 
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    
+    
+}
+
+.lines{
+    display: flex;
+    gap: 8px;
+      
+}
+
+.operator{
+    background: rgb(42, 74, 78);
+
+}
+
+.specials{
+
+    background-color: rgb(129, 129, 129);
+}
+
