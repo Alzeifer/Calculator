@@ -8,7 +8,11 @@ let currentValue = '';
 
 //inputNumber
 function addNumber(digit) {
-   if(currentValue === ''){
+   if (currentValue === '0' && digit === '0'){
+      return
+   };
+
+   if(currentValue === '0' && digit !== '.'){
       currentValue = digit;
    } else {
     currentValue += digit;
@@ -57,6 +61,7 @@ btnDelete.addEventListener('click', backspace);
     if (e.key === 'Escape'){
       clearInput();
     }
+    if (e.key === '.') addDot();
  });
 
 
@@ -70,8 +75,23 @@ btnDelete.addEventListener('click', backspace);
    inputUpdate();
  };
 
- 
+
  function clearInput(){
     currentValue = "";
     inputUpdate();
  };
+ 
+
+ function addDot(){
+   if(currentValue.includes('.')) return;
+   if (currentValue === '0' || currentValue === ''){
+      currentValue = '0.';
+   } else{
+      currentValue += '.';
+   }
+
+   inputUpdate();
+ }
+
+
+ //Calculation
