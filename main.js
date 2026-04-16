@@ -1,52 +1,77 @@
 //i need to the time i push a button shows in the ImageCapture, next the operations a limit of 
 //1,000,000,000 the posibility of put . 1 time at once. 
 const buttons = document.querySelectorAll('.num');
-const btnDelete = document.querySelector('#backspace')
-const inputField = document.querySelector('#display')
+const btnDelete = document.querySelector('#backspace');
+const inputField = document.querySelector('#display');
 
-//let currentInput = '0';
+let currentValue = '';
 
+//inputNumber
 function addNumber(digit) {
-    inputField.value += digit;
+   if(currentValue === ''){
+      currentValue = digit;
+   } else {
+    currentValue += digit;
+   }
+   inputUpdate();
 }
 
+//buttonsFunctions
  buttons.forEach(btn => {
-    btn.addEventListener('click', () => 
-        addNumber(btn.value));
+    btn.addEventListener('click', () => {
+        const noValue = btn.textContent;
 
-      ///  if (!isNaN (value)){
-      //      inputNumber(value);
-        // if (value === 'Backspace'){
-       //   backspace()
-      //  }
+        if (!isNaN (noValue)){
+            addNumber(noValue);
 
+        } else if (noValue === "C"){
+         clearInput();
 
-       // inputUpdate();
-    });
+        } else if (noValue === '='){
+         calculateResult();
 
+        }else if (noValue === '.'){
+         addDot();
+
+        }else if (noValue === '+/-'){
+         positiveNegative();
+
+        }else{
+         operator(noValue);
+        }
+
+      });
+   });
+
+   //backspaceButton
 btnDelete.addEventListener('click', backspace);
 
+
+   //keyboardFunction
  window.addEventListener('keydown', (e) =>{
     if (e.key >= 0 && e.key <= 9) {
         addNumber(e.key);
     };
     if (e.key === 'Enter') calculateResult();
-    if (e.key === 'Backspace') inputField.value = inputField.value.slice(0, -1);
+    if (e.key === 'Backspace') backspace();
+    if (e.key === 'Escape'){
+      clearInput();
+    }
  });
 
-// function inputNumber(num){
-  //  if(currentInput === '0' || reset){
-  //      currentInput = num;
-  //      reset = false;
-  //  } else {
-  //      currentInput += num;
-  //  }
-// }
 
- function inputUpdate(value) {
-    inputField.value = value;
- }
+ function inputUpdate() {
+    inputField.value = currentValue;
+ };
+
 
  function backspace(){
-   inputField.value = inputField.value.slice(0, -1);
- }
+   currentValue = currentValue.slice(0, -1);
+   inputUpdate();
+ };
+
+ 
+ function clearInput(){
+    currentValue = "";
+    inputUpdate();
+ };
