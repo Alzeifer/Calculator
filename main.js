@@ -4,7 +4,9 @@ const buttons = document.querySelectorAll('.num');
 const btnDelete = document.querySelector('#backspace');
 const inputField = document.querySelector('#display');
 
-let currentValue = '';
+let prevValue = '';
+let operator = '';
+let currentValue = '0';
 
 //inputNumber
 function addNumber(digit) {
@@ -41,7 +43,7 @@ function addNumber(digit) {
          positiveNegative();
 
         }else{
-         operator(noValue);
+         handleOperator(noValue);
         }
 
       });
@@ -62,11 +64,14 @@ btnDelete.addEventListener('click', backspace);
       clearInput();
     }
     if (e.key === '.') addDot();
+    if (['+', '-', '*', '/'].includes(e.key)){
+      handleOperator(e.key);
+    }
  });
 
 
  function inputUpdate() {
-    inputField.value = currentValue;
+    inputField.value = currentValue || prevValue || '0';
  };
 
 
@@ -91,7 +96,52 @@ btnDelete.addEventListener('click', backspace);
    }
 
    inputUpdate();
+ };
+
+ //OperationCall
+ function handleOperator(op){
+
+   if (currentValue === '' && prevValue !== '') {
+      operator = op;
+       return;
+   }
+
+   if (prevValue !== '' && currentValue !== '') {
+      calculateResult();
+   }
+
+   operator = op;
+   prevValue = currentValue;
+
+   currentValue = '';
+
+
  }
 
+ //CalculationsBrain
+ function operate(a, b, op) {
+   a = Number(a);
+   b = Number(b);
 
- //Calculation
+   switch (op) {
+      case '+': return a + b;
+      case '-': return a - b;
+      case '*': return a * b;
+      case '/': return b === 0 ? "ERROR" : a / b;
+      default : return b;
+   };
+ };
+
+ function calculateResult() {
+   if ( operator === '' || prevValue === '') return;
+
+   const result = operate(prevValue, currentValue, operator);
+
+   currentValue = result.toString();
+   prevValue = '';
+   operator = '';
+
+   inputUpdate();
+ }
+
+ 
