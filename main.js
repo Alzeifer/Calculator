@@ -144,7 +144,12 @@ btnDelete.addEventListener('click', backspace);
    inputUpdate();
  }
 
+function positiveNegative(){
+   if (currentValue === '' || currentValue === '0') return;
 
+   currentValue = parseFloat((currentValue) * -1).toString();
 
- 
+   inputUpdate();
+}
+
  
